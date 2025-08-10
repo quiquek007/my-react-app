@@ -1,8 +1,9 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.scss';
-import App from './App.tsx';
 import reportWebVitals from './reportWebVitals';
+import App from './app/App.tsx';
+import { ThemeProvider } from './app/contexts/ThemeContext.tsx';
 
 const container = document.getElementById('root');
 
@@ -11,7 +12,9 @@ if (container) {
 
   root.render(
     <React.StrictMode>
-      <App />
+      <ThemeProvider>
+        <App />
+      </ThemeProvider>
     </React.StrictMode>
   );
 } else throw new Error('Root container not found');
