@@ -3,10 +3,11 @@ import './App.scss';
 import { ChangeBackgroundButton } from './components/change-background-button/change-background-button.tsx';
 import { MessageParent } from './components/props-section/MessageParent.tsx';
 import { Timer } from './components/timer/timer.tsx';
-import { ThemeProvider, useTheme } from './contexts/ThemeContext.tsx';
+import { useTheme } from './contexts/ThemeContext.tsx';
 import { ThemeSwitcher } from './components/theme-switcher/ThemeSwitcher.tsx';
 import Counter from './components/counter/counter.tsx';
 import { UseMemoHook } from './components/use-memo-hook/use-memo-hook.tsx';
+import { DayNight } from './components/day-night/DayNight.tsx';
 
 function App() {
   const [tasks, setTasks] = useState<string[]>([]);
@@ -75,6 +76,9 @@ function App() {
       <section>
         <h2>Прыклад Use memo hook</h2>
         <UseMemoHook />
+      </section>
+      <section>
+        <h2>Day Night Example: <DayNight dayMessage="Сёння дзень" nightMessage="Зараз ноч" /></h2>
       </section>
     </div>
   );
