@@ -8,11 +8,13 @@ import { ThemeSwitcher } from './components/theme-switcher/ThemeSwitcher.tsx';
 import Counter from './components/counter/counter.tsx';
 import { UseMemoHook } from './components/use-memo-hook/use-memo-hook.tsx';
 import { DayNight } from './components/day-night/DayNight.tsx';
+import { useNavigate } from 'react-router-dom';
 
 function App() {
   const [tasks, setTasks] = useState<string[]>([]);
   const [input, setInput] = useState<string>('');
   const inputRef = useRef<HTMLInputElement>(null);
+  const navigate = useNavigate();
   const { theme } = useTheme();
   
   const addTask = () => {
@@ -25,6 +27,7 @@ function App() {
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => setInput(e.target.value);
   
   const removeTask = (index: number) => setTasks(tasks.filter((_, i) => i !== index));
+  const onGoToContactsClick = () => navigate('/contact');
 
   useEffect(() => {
     console.log(`Current theme: ${theme}`);
@@ -79,6 +82,9 @@ function App() {
       </section>
       <section>
         <h2>Day Night Example: <DayNight dayMessage="Сёння дзень" nightMessage="Зараз ноч" /></h2>
+      </section>
+      <section>
+        <h2>Прыклад як змяніць url праграмна <button onClick={onGoToContactsClick}>Go to Contacts</button></h2>
       </section>
     </div>
   );
