@@ -4,11 +4,9 @@ import './index.scss';
 import reportWebVitals from './reportWebVitals';
 import { ThemeProvider } from './app/contexts/ThemeContext.tsx';
 import { BrowserRouter, Routes, Route, Link } from 'react-router-dom';
-// import App from './app/App.tsx';
 import { Profile } from './app/components/contacts/profile.tsx';
 
 // Page components
-const Main = () => <App />;
 const About = () => <h2>Пра нас</h2>;
 const NotFound = () => <h2>404: Старонка не знойдзена</h2>;
 const Contacts = React.lazy(() =>
@@ -32,7 +30,7 @@ if (container) {
           </nav>
           <Suspense fallback={<img src="/loading_snail.gif" alt="Loading..." />}>
             <Routes>
-              <Route path="/" element={<Main />} />
+              <Route path="/" element={<App />} />
               <Route path="/about" element={<About />} />
               <Route path="/contacts" element={<Contacts />} />
               <Route path="/profile/:id" element={<Profile />} />
