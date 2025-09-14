@@ -1,4 +1,4 @@
-import { useReducer } from 'react';
+import { useReducer, useState } from 'react';
 
 interface CounterState {
   count: number;
@@ -13,6 +13,8 @@ enum CounterActionType {
   Decrement = 'decrement',
   Reset = 'reset',
 }
+
+const BASE_FONT_SIZE = 16;
 
 const counterReducer = (state: CounterState, action: CounterAction) => {
   switch (action.type) {
@@ -33,7 +35,7 @@ const Counter = () => {
 
   return (
     <div style={{ padding: "20px", textAlign: "center" }}>
-      <h1>Лічыльнік: {state.count}</h1>
+      <h2>Лічыльнік: <span style={{ fontSize: `${BASE_FONT_SIZE + state.count}px` }}>{state.count}</span></h2>
       <button onClick={() => dispatch({ type: CounterActionType.Increment })}>Павялічыць</button>
       <button onClick={() => dispatch({ type: CounterActionType.Decrement })}>Паменшыць</button>
       <button onClick={() => dispatch({ type: CounterActionType.Reset })}>Скінуць</button>

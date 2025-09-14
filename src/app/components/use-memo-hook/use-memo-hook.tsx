@@ -12,7 +12,7 @@ export const UseMemoHook = () => {
 
   return (
     <div>
-      <h1>Прыклад з useMemo</h1>
+      <h2>Прыклад з useMemo</h2>
       <p>Тэарэтычна: {memoizedValue}</p>
       <button onClick={() => setCount(count + 1)}>Змяніць count: {count}</button>
       <button onClick={() => setOtherCount(otherCount + 1)}>

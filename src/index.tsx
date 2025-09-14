@@ -1,17 +1,20 @@
-import React from 'react';
+import React, { Suspense } from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.scss';
 import reportWebVitals from './reportWebVitals';
 import { ThemeProvider } from './app/contexts/ThemeContext.tsx';
 import { BrowserRouter, Routes, Route, Link } from 'react-router-dom';
-import App from './app/App.tsx';
-import { Contacts } from './app/components/contacts/contacts.tsx';
+// import App from './app/App.tsx';
 import { Profile } from './app/components/contacts/profile.tsx';
 
 // Page components
 const Main = () => <App />;
-const About = () => <h1>Пра нас</h1>;
-const NotFound = () => <h1>404: Старонка не знойдзена</h1>;
+const About = () => <h2>Пра нас</h2>;
+const NotFound = () => <h2>404: Старонка не знойдзена</h2>;
+const Contacts = React.lazy(() =>
+  import('./app/components/contacts/contacts.tsx').then(module => ({ default: module.Contacts }))
+);
+const App = React.lazy(() => import('./app/App.tsx'));
 
 const container = document.getElementById('root');
 
@@ -27,13 +30,15 @@ if (container) {
             <Link to="/about">About</Link> |{' '}
             <Link to="/contacts">Contacts</Link>
           </nav>
-          <Routes>
-            <Route path="/" element={<Main />} />
-            <Route path="/about" element={<About />} />
-            <Route path="/contacts" element={<Contacts />} />
-            <Route path="/profile/:id" element={<Profile />} />
-            <Route path="*" element={<NotFound />} />
-          </Routes>
+          <Suspense fallback={<img src="/loading_snail.gif" alt="Loading..." />}>
+            <Routes>
+              <Route path="/" element={<Main />} />
+              <Route path="/about" element={<About />} />
+              <Route path="/contacts" element={<Contacts />} />
+              <Route path="/profile/:id" element={<Profile />} />
+              <Route path="*" element={<NotFound />} />
+            </Routes>
+          </Suspense>
         </ThemeProvider>
       </BrowserRouter>
     </React.StrictMode>

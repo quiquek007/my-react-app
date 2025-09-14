@@ -27,7 +27,7 @@ function App() {
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => setInput(e.target.value);
   
   const removeTask = (index: number) => setTasks(tasks.filter((_, i) => i !== index));
-  const onGoToContactsClick = () => navigate('/contact');
+  const onGoToContactsClick = () => navigate('/contacts');
 
   useEffect(() => {
     console.log(`Current theme: ${theme}`);
@@ -38,7 +38,7 @@ function App() {
   return (
     <div className={`App ${theme}`}>
       <header className="App-header">
-        <h1>To-Do List</h1>
+        <h2>To-Do List</h2>
         <input
           type="text"
           ref={inputRef}
